@@ -4,3 +4,9 @@ C:\Users\Joran\Desktop\Demo-cs\HalloWin3\obj\x86\Debug\02e-HalloWin3.csprojAssem
 C:\Users\Joran\Desktop\Demo-cs\HalloWin3\obj\x86\Debug\02e-HalloWin3.csproj.CoreCompileInputs.cache
 C:\Users\Joran\Desktop\Demo-cs\HalloWin3\obj\x86\Debug\HalloWin3.exe
 C:\Users\Joran\Desktop\Demo-cs\HalloWin3\obj\x86\Debug\HalloWin3.pdb
+C:\Users\Joran\Source\Repos\ModProg\HalloWin3\bin\Debug\HalloWin3.exe
+C:\Users\Joran\Source\Repos\ModProg\HalloWin3\bin\Debug\HalloWin3.pdb
+C:\Users\Joran\Source\Repos\ModProg\HalloWin3\obj\x86\Debug\02e-HalloWin3.csprojAssemblyReference.cache
+C:\Users\Joran\Source\Repos\ModProg\HalloWin3\obj\x86\Debug\02e-HalloWin3.csproj.CoreCompileInputs.cache
+C:\Users\Joran\Source\Repos\ModProg\HalloWin3\obj\x86\Debug\HalloWin3.exe
+C:\Users\Joran\Source\Repos\ModProg\HalloWin3\obj\x86\Debug\HalloWin3.pdb
