@@ -91,7 +91,7 @@ namespace Wet_van_Fitt
 
         public void Begin_knop(object sender, EventArgs e)
         {
-            Size schermgrootte = this.ClientSize; //omdat schermgrootte een Size met een x en een y is moet er .Widht of .Height achter
+            Size schermgrootte = this.ClientSize; //omdat schermgrootte een Size met een x en een y is moet er .Width of .Height achter
             int button1xpos = schermgrootte.Width / 2 - 50;
             int button1ypos = schermgrootte.Height / 2 - 50;
             this.button1.Name = "Begin knop";
