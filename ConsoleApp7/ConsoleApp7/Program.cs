@@ -16,7 +16,7 @@ static void Main()
         string geboortejaar = Console.ReadLine();
         int jaar = int.Parse(geboortejaar);
         int leeftijd = 2018 - jaar; 
-        Console.WriteLine("Ik schat in dat je " + leeftijd + " jaar oud bent!");
+        Console.WriteLine("Ik schat dat je " + leeftijd + " jaar oud bent!");
         Console.ReadLine();
     }
 }
