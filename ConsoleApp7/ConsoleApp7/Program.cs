@@ -12,7 +12,7 @@ static void Main()
         string format = "MMM ddd d HH:mm yyyy";
         Console.WriteLine(format);
         Console.ReadKey();
-        Console.WriteLine("Wat is je geboortejaar?");
+        Console.WriteLine("Wat is je geboortedatum?");
         string geboortejaar = Console.ReadLine();
         int jaar = int.Parse(geboortejaar);
         int leeftijd = 2018 - jaar; 
