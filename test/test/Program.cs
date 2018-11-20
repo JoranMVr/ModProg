@@ -73,10 +73,13 @@ namespace Wet_van_Fitt
 
         public void Reactie_knop(object sender, EventArgs e)
         {
+            Size schermgrootte = this.ClientSize;
+            int button2xpos = schermgrootte.Width;
+            int button2ypos = schermgrootte.Height;
             Random rnd = new Random();
-            int xpos = rnd.Next(1, 1050);
-            int ypos = rnd.Next(1, 600);
             int x1 = rnd.Next(40, 300);
+            int xpos = rnd.Next(1, button2xpos - x1);
+            int ypos = rnd.Next(1, button2ypos - x1);
             this.button2.Location = new System.Drawing.Point(xpos, ypos);
             this.button2.Size = new System.Drawing.Size(x1, x1);
             this.button1.Visible = false;
