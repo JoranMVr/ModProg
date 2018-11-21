@@ -12,7 +12,7 @@ namespace Wet_van_Fitt
 
     class Scherm : Form
     {
-
+        
         private Button button1;
 
         private Button button2;
@@ -34,12 +34,33 @@ namespace Wet_van_Fitt
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // Scherm
+            // 
+            //this.AutoSize = true;
+            //this.ClientSize = new System.Drawing.Size(1008, 516);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Name = "Scherm";
+            this.RightToLeftLayout = true;
+            this.Text = "Wet van Fitt";
+            this.ResumeLayout(false);
+            // 
             // button1
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(650, 300);
+            Scherm scherm = this;
+            scherm.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Size grootte = this.ClientSize;
+            int sizex = grootte.Width;
+            int sizey = grootte.Height;
+            //this.button1.SizeChanged += new EventHandler(this.Begin_KnopSizeChanged);
+            //this.button1.Location = new System.Drawing.Point(sizex, sizey);
             this.button1.Name = "Begin knop";
             this.button1.Size = new System.Drawing.Size(100, 100);
+            button1.Location = new Point(
+                this.ClientSize.Width / 2 - button1.Size.Width / 2,
+                this.ClientSize.Height / 2 - button1.Size.Height / 2);
+            button1.Anchor = AnchorStyles.None;
             this.button1.TabIndex = 0;
             this.button1.Text = "Klik Hier";
             this.button1.Click += new System.EventHandler(this.Reactie_knop);
@@ -53,35 +74,36 @@ namespace Wet_van_Fitt
             this.button2.TabIndex = 1;
             this.button2.Text = "Nee Hier!";
             this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.Begin_knop);
-            // 
-            // Scherm
-            // 
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1008, 516);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Name = "Scherm";
-            this.RightToLeftLayout = true;
-            this.Text = "Wet van Fitt";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.ResumeLayout(false);
-            
+            this.button2.Click += new System.EventHandler(this.Begin_knop);            
       
 
         }
 
+        //public void Begin_KnopSizeChanged(object sender, EventArgs e)
+        //{
+        //    Size grootte = this.ClientSize;
+        //    int sizex = grootte.Width;
+        //    int sizey = grootte.Height;
+        //    this.button1.Location = new System.Drawing.Point(sizex, sizey);
+        //}
+
         public void Reactie_knop(object sender, EventArgs e)
         {
             Size schermgrootte = this.ClientSize;
-            int button2xpos = schermgrootte.Width;
-            int button2ypos = schermgrootte.Height;
+            //double button2xpos = schermgrootte.Width;
+            //double button2ypos = schermgrootte.Height;
             Random rnd = new Random();
-            int x1 = rnd.Next(40, 300);
-            int xpos = rnd.Next(1, button2xpos - x1);
-            int ypos = rnd.Next(1, button2ypos - x1);
-            this.button2.Location = new System.Drawing.Point(xpos, ypos);
-            this.button2.Size = new System.Drawing.Size(x1, x1);
+            double x1 = rnd.NextDouble();
+            double y1 = rnd.NextDouble();
+            int x2 = rnd.Next(40, 300);
+            //int xpos = rnd.Next(0, button2xpos - x1);
+            //int ypos = rnd.Next(0, button2ypos - x1);
+            //int xpos = Math.Floor(x1 * button2xpos);
+            //int ypos = 
+            double xpos = x1 * schermgrootte.Width;
+            double ypos = y1 * schermgrootte.Height;
+            this.button2.Location = new Point((int)xpos - x2/ 2, (int)ypos - x2 / 2);
+            this.button2.Size = new System.Drawing.Size(x2, x2);
             this.button1.Visible = false;
             this.button2.Visible = true;
             this.button2.Click += new System.EventHandler(this.Begin_knop);
