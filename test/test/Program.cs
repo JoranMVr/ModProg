@@ -112,7 +112,7 @@ namespace Wet_van_Fitt
             //
             //afstand en breedte naar console
             //
-            double afstand = Math.Sqrt(Math.Pow(button2.Location.X - button1.Location.X, 2) + Math.Pow(button1.Location.Y - button2.Location.Y, 2));
+            double afstand = Math.Sqrt(Math.Pow(button2.Location.X + (button2.Size.Width /2) - button1.Location.X + (button1.Size.Width / 2), 2) + Math.Pow(button1.Location.Y + (button1.Size.Width /2) - button2.Location.Y + (button2.Size.Width / 2), 2));
             int d = (int)Math.Round(afstand);
             int w = button2.Size.Width;
             Console.WriteLine("Meting " + i + ". Reactietijd (ms)     = " + Tijdverschil);
