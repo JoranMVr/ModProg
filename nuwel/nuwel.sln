@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nuwel", "nuwel\nuwel.csproj", "{056C0B7E-F6B1-4CC2-8040-3CC48B7F7FFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{056C0B7E-F6B1-4CC2-8040-3CC48B7F7FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{056C0B7E-F6B1-4CC2-8040-3CC48B7F7FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{056C0B7E-F6B1-4CC2-8040-3CC48B7F7FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{056C0B7E-F6B1-4CC2-8040-3CC48B7F7FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE23DBF7-FCFF-4344-8B56-E9BC2940063D}
+	EndGlobalSection
+EndGlobal

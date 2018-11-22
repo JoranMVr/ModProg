@@ -12,6 +12,11 @@ namespace Wet_van_Fitt
 
     class Scherm : Form
     {
+        DateTime t1;
+        DateTime t2;
+
+        int i = 1;
+        int count = 1;
         
         private Button button1;
 
@@ -89,6 +94,7 @@ namespace Wet_van_Fitt
 
         public void Reactie_knop(object sender, EventArgs e)
         {
+            t1 = DateTime.Now;
             Size schermgrootte = this.ClientSize;
             //double button2xpos = schermgrootte.Width;
             //double button2ypos = schermgrootte.Height;
@@ -113,6 +119,7 @@ namespace Wet_van_Fitt
 
         public void Begin_knop(object sender, EventArgs e)
         {
+            t2 = DateTime.Now;
             Size schermgrootte = this.ClientSize; // Omdat schermgrootte een Size met een x en een y is moet er .Width of .Height achter
             int button1xpos = schermgrootte.Width / 2 - 50;
             int button1ypos = schermgrootte.Height / 2 - 50;
@@ -122,6 +129,13 @@ namespace Wet_van_Fitt
             this.button1.Text = "Klik Hier";
             this.button1.Visible = true;
             this.button2.Visible = false;
+            long Tijdverschil = (t2.Ticks - t1.Ticks) / 10000;
+            count++;
+            while (i < count)
+            {
+                Console.WriteLine("Meting " + i + ". Reactietijd (ms) = " + Tijdverschil);
+                i++;
+            }
             this.button1.Click += new System.EventHandler(Reactie_knop);
         }
 
