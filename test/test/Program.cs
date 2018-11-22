@@ -19,7 +19,6 @@ namespace Wet_van_Fitt
         int count = 1;
         
         private Button button1;
-
         private Button button2;
 
         public Scherm()
@@ -28,8 +27,6 @@ namespace Wet_van_Fitt
         }
         static void Main(string[] args)
         {
-
-
             Application.Run(new Scherm());
         }
 
@@ -41,8 +38,6 @@ namespace Wet_van_Fitt
             // 
             // Scherm
             // 
-            //this.AutoSize = true;
-            //this.ClientSize = new System.Drawing.Size(1008, 516);
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
@@ -58,8 +53,6 @@ namespace Wet_van_Fitt
             Size grootte = this.ClientSize;
             int sizex = grootte.Width;
             int sizey = grootte.Height;
-            //this.button1.SizeChanged += new EventHandler(this.Begin_KnopSizeChanged);
-            //this.button1.Location = new System.Drawing.Point(sizex, sizey);
             this.button1.Name = "Begin knop";
             this.button1.Size = new System.Drawing.Size(100, 100);
             button1.Location = new Point(
@@ -84,35 +77,18 @@ namespace Wet_van_Fitt
 
         }
 
-        //public void Begin_KnopSizeChanged(object sender, EventArgs e)
-        //{
-        //    Size grootte = this.ClientSize;
-        //    int sizex = grootte.Width;
-        //    int sizey = grootte.Height;
-        //    this.button1.Location = new System.Drawing.Point(sizex, sizey);
-        //}
-
         public void Reactie_knop(object sender, EventArgs e)
         {
             t1 = DateTime.Now;
             Size schermgrootte = this.ClientSize;
-            //double button2xpos = schermgrootte.Width;
-            //double button2ypos = schermgrootte.Height;
             Random rnd = new Random();
-            double x1 = rnd.NextDouble();
-            double y1 = rnd.NextDouble();
+            int x1 = rnd.Next(this.ClientSize.Width - this.button2.Size.Width);
+            int y1 = rnd.Next(this.ClientSize.Height - this.button2.Size.Height);
             int x2 = rnd.Next(40, 300);
-            //int xpos = rnd.Next(0, button2xpos - x1);
-            //int ypos = rnd.Next(0, button2ypos - x1);
-            //int xpos = Math.Floor(x1 * button2xpos);
-            //int ypos = 
-            double xpos = x1 * schermgrootte.Width;
-            double ypos = y1 * schermgrootte.Height;
-            this.button2.Location = new Point((int)xpos - x2/ 2, (int)ypos - x2 / 2);
+            this.button2.Location = new Point(x1, y1);
             this.button2.Size = new System.Drawing.Size(x2, x2);
             this.button1.Visible = false;
             this.button2.Visible = true;
-            //this.button2.Click += new System.EventHandler(this.Begin_knop);
 
 
         }
@@ -134,6 +110,14 @@ namespace Wet_van_Fitt
                 Console.WriteLine("Meting " + i + ". Reactietijd (ms) = " + Tijdverschil);
                 i++;
             this.button1.Click += new System.EventHandler(Reactie_knop);
+
+            int xverschil = button1.Location.X - button2.Location.X;
+            int yverschil = button1.Location.Y - button2.Location.Y;
+            Console.WriteLine("Verschil x-as is " + xverschil + " En het verschil y-as is " + yverschil + " !");
+        }
+        public void Afstand(object sender, EventArgs e)
+        {
+
         }
 
 
