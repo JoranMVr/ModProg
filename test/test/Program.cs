@@ -112,7 +112,7 @@ namespace Wet_van_Fitt
             this.button2.Size = new System.Drawing.Size(x2, x2);
             this.button1.Visible = false;
             this.button2.Visible = true;
-            this.button2.Click += new System.EventHandler(this.Begin_knop);
+            //this.button2.Click += new System.EventHandler(this.Begin_knop);
 
 
         }
@@ -120,7 +120,7 @@ namespace Wet_van_Fitt
         public void Begin_knop(object sender, EventArgs e)
         {
             t2 = DateTime.Now;
-            Size schermgrootte = this.ClientSize; // Omdat schermgrootte een Size met een x en een y is moet er .Width of .Height achter
+            Size schermgrootte = this.ClientSize;
             int button1xpos = schermgrootte.Width / 2 - 50;
             int button1ypos = schermgrootte.Height / 2 - 50;
             this.button1.Name = "Begin knop";
@@ -131,11 +131,8 @@ namespace Wet_van_Fitt
             this.button2.Visible = false;
             long Tijdverschil = (t2.Ticks - t1.Ticks) / 10000;
             count++;
-            while (i < count)
-            {
                 Console.WriteLine("Meting " + i + ". Reactietijd (ms) = " + Tijdverschil);
                 i++;
-            }
             this.button1.Click += new System.EventHandler(Reactie_knop);
         }
 
