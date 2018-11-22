@@ -15,7 +15,7 @@ namespace Wet_van_Fitt
         DateTime t1;
         DateTime t2;
 
-        int i = 1;
+        int i = 0;
         int count = 1;
         
         private Button button1;
@@ -107,19 +107,18 @@ namespace Wet_van_Fitt
             this.button2.Visible = false;
             long Tijdverschil = (t2.Ticks - t1.Ticks) / 10000;
             count++;
-                Console.WriteLine("Meting " + i + ". Reactietijd (ms) = " + Tijdverschil);
-                i++;
+            i++;
             this.button1.Click += new System.EventHandler(Reactie_knop);
-
-            int xverschil = button1.Location.X - button2.Location.X;
-            int yverschil = button1.Location.Y - button2.Location.Y;
-            Console.WriteLine("Verschil x-as is " + xverschil + " En het verschil y-as is " + yverschil + " !");
+            //
+            //afstand en breedte naar console
+            //
+            double afstand = Math.Sqrt(Math.Pow(button2.Location.X - button1.Location.X, 2) + Math.Pow(button1.Location.Y - button2.Location.Y, 2));
+            int d = (int)Math.Round(afstand);
+            int w = button2.Size.Width;
+            Console.WriteLine("Meting " + i + ". Reactietijd (ms)     = " + Tijdverschil);
+            Console.WriteLine("Meting " + i + ". Afstand     (pixels) = " + d);
+            Console.WriteLine("Meting " + i + ". Breedte     (pixels) = " + w);
+            Console.WriteLine();
         }
-        public void Afstand(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }
