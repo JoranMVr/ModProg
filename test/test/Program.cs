@@ -115,9 +115,10 @@ namespace Wet_van_Fitt
             double afstand = Math.Sqrt(Math.Pow(button2.Location.X + (button2.Size.Width /2) - button1.Location.X + (button1.Size.Width / 2), 2) + Math.Pow(button1.Location.Y + (button1.Size.Width /2) - button2.Location.Y + (button2.Size.Width / 2), 2));
             int d = (int)Math.Round(afstand);
             int w = button2.Size.Width;
-            Console.WriteLine("Meting " + i + ". Reactietijd (ms)     = " + Tijdverschil);
-            Console.WriteLine("Meting " + i + ". Afstand     (pixels) = " + d);
-            Console.WriteLine("Meting " + i + ". Breedte     (pixels) = " + w);
+            Console.WriteLine("Meting " + i);
+            Console.WriteLine("Reactietijd (ms)     = " + Tijdverschil);
+            Console.WriteLine("Afstand     (pixels) = " + d);
+            Console.WriteLine("Breedte     (pixels) = " + w);
             Console.WriteLine();
         }
     }
