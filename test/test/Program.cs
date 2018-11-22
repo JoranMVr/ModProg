@@ -73,8 +73,6 @@ namespace Wet_van_Fitt
             this.button2.Text = "Nee Hier!";
             this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.Begin_knop);            
-      
-
         }
 
         public void Reactie_knop(object sender, EventArgs e)
@@ -89,16 +87,14 @@ namespace Wet_van_Fitt
             this.button2.Size = new System.Drawing.Size(x2, x2);
             this.button1.Visible = false;
             this.button2.Visible = true;
-
-
         }
 
         public void Begin_knop(object sender, EventArgs e)
         {
             t2 = DateTime.Now;
             Size schermgrootte = this.ClientSize;
-            int button1xpos = schermgrootte.Width / 2 - 50;
-            int button1ypos = schermgrootte.Height / 2 - 50;
+            int button1xpos = (schermgrootte.Width / 2) - this.button1.Size.Width;
+            int button1ypos = (schermgrootte.Height / 2) - this.button1.Size.Height;
             this.button1.Name = "Begin knop";
             this.button1.Size = new System.Drawing.Size(100, 100);
             this.button1.Location = new System.Drawing.Point(button1xpos, button1ypos);
@@ -115,11 +111,14 @@ namespace Wet_van_Fitt
             double afstand = Math.Sqrt(Math.Pow(button2.Location.X - button1.Location.X, 2) + Math.Pow(button1.Location.Y - button2.Location.Y, 2));
             int d = (int)Math.Round(afstand);
             int w = button2.Size.Width;
+            double id = Math.Log((afstand / w) + 1, 2);
             Console.WriteLine("Meting " + i);
             Console.WriteLine("Reactietijd (ms)     = " + Tijdverschil);
             Console.WriteLine("Afstand     (pixels) = " + d);
             Console.WriteLine("Breedte     (pixels) = " + w);
+            Console.WriteLine("ID waarde            = " + id);
             Console.WriteLine();
+            //Console.WriteLine(id + "." + Tijdverschil); //Gebruikt in combinatie met >>data.csv voor excel bestandje, in excel bij 'data -> Text to columns' scheiden op de .en grafiekje plotten
         }
     }
 }
