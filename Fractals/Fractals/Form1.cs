@@ -34,7 +34,7 @@ namespace Fractals
             currentmaxi = maxi;
             currentminr = minr;
             currentmini = mini;
-            Bitmap img = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bitmap img = new Bitmap(pictureBox1.Width * 2, pictureBox1.Height * 2);
             double zx = 0;
             double zy = 0;
             double cx = 0;
@@ -42,7 +42,7 @@ namespace Fractals
             double xjump = ((maxr - minr) / Convert.ToDouble(img.Width));
             double yjump = ((maxi - mini) / Convert.ToDouble(img.Height));
             double tempzx = 0;
-            int loopmax = 10000;
+            int loopmax = 1000;
             int loopgo = 0;
             for (int x = 0; x < img.Width; x++)
             {
@@ -61,10 +61,11 @@ namespace Fractals
                         zy = (2 * tempzx * zy) + cy;
                     }
                     if (loopgo != loopmax)
-                        img.SetPixel(x, y, Color.FromArgb(loopgo % 128 * 2, loopgo % 32 * 7, loopgo % 16 * 14));
+                        img.SetPixel(x, y, Color.FromArgb(loopgo % 128 * 2, loopgo % 32 * 7,  loopgo % 16 * 14));
                     else
                         img.SetPixel(x, y, Color.Black);
-
+                    //Console.WriteLine(loopgo % 128 * 2);
+                    //Console.WriteLine(loopgo % 32 * 7);
                 }
             }
             return img;
