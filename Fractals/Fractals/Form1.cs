@@ -34,16 +34,16 @@ namespace Fractals
             currentmaxi = maxi;
             currentminr = minr;
             currentmini = mini;
-            Bitmap img = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bitmap img = new Bitmap(pictureBox1.Width * 2, pictureBox1.Height * 2);
             double zx = 0;
             double zy = 0;
             double cx = 0;
             double cy = 0;
             double xjump = ((maxr - minr) / Convert.ToDouble(img.Width));
             double yjump = ((maxi - mini) / Convert.ToDouble(img.Height));
-            double tempzx = 0;
-            int loopmax = 100;
-            int loopgo = 0;
+            double tzx = 0;
+            int maxherhalingen = 1000;
+            int herhalingen = 0;
             for (int x = 0; x < img.Width; x++)
             {
                 cx = (xjump * x) - Math.Abs(minr);
@@ -52,19 +52,20 @@ namespace Fractals
                     zx = 0;
                     zy = 0;
                     cy = (yjump * y) - Math.Abs(mini);
-                    loopgo = 0;
-                    while (zx * zx + zy * zy <= 4 && loopgo < loopmax)
+                    herhalingen = 0;
+                    while (zx * zx + zy * zy <= 4 && herhalingen < maxherhalingen)
                     {
-                        loopgo++;
-                        tempzx = zx;
+                        herhalingen++;
+                        tzx = zx;
                         zx = (zx * zx) - (zy * zy) + cx;
-                        zy = (2 * tempzx * zy) + cy;
+                        zy = (2 * tzx * zy) + cy;
                     }
-                    if (loopgo != loopmax)
-                        img.SetPixel(x, y, Color.FromArgb(loopgo % 128 * 2, loopgo % 32 * 7, loopgo % 16 * 14));
+                    if (herhalingen != maxherhalingen)
+                        img.SetPixel(x, y, Color.FromArgb(herhalingen % 128 * 2, herhalingen % 32 * 7,  herhalingen % 16 * 14));
                     else
                         img.SetPixel(x, y, Color.Black);
-
+                    //Console.WriteLine(loopgo % 128 * 2);
+                    //Console.WriteLine(loopgo % 32 * 7);
                 }
             }
             return img;
@@ -74,14 +75,14 @@ namespace Fractals
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            int ex = e.X;
-            int ey = e.Y;
+            int Muisx = e.X;
+            int Muisy = e.Y;
             double currentxjump = ((currentmaxr - currentminr) / Convert.ToDouble(pictureBox1.Width));
             double currentyjump = ((currentmaxi  - currentmini) / Convert.ToDouble(pictureBox1.Height));
 
-            int zoomx = pictureBox1.Width/5 ;
-            int zoomy = pictureBox1.Height/5;
-            Bitmap img = MandelbrotSet(pictureBox1,((ex +zoomx) * currentxjump) -Math.Abs(currentminr) , ((ex-zoomx) * currentxjump) -Math.Abs(currentminr) , ((ey+zoomy ) * currentyjump) - Math.Abs(currentmini) , ((ey- zoomy) * currentyjump) - Math.Abs(currentmini));
+            int vijfzoomx = pictureBox1.Width/5 ;
+            int vijfzoomy = pictureBox1.Height/5;
+            Bitmap img = MandelbrotSet(pictureBox1,((Muisx +vijfzoomx) * currentxjump) -Math.Abs(currentminr) , ((Muisx-vijfzoomx) * currentxjump) -Math.Abs(currentminr) , ((Muisy+vijfzoomy ) * currentyjump) - Math.Abs(currentmini) , ((Muisy- vijfzoomy) * currentyjump) - Math.Abs(currentmini));
             pictureBox1.Image.Dispose();
             pictureBox1.Image = img;
         }

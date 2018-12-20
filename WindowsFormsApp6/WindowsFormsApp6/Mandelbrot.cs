@@ -19,10 +19,18 @@ namespace MandelBrot
         private Label schaallabel;
         private Label herhalingenlabel;
         private Button knop;
-        private PictureBox Mantelbrot;
+        //private PictureBox Mantelbrot;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        
+        public double currentmaxr = 0;
+        public double currentminr = 0;
+        public double currentmaxi = 0;
+        public double currentmini = 0;
 
-        public Mandelbrot()
+        public  Mandelbrot()
         {
+        
+          
             //Middenx textbox
             this.middenx = new TextBox();
             this.middenx.Location = new Point(100, 10);
@@ -48,7 +56,7 @@ namespace MandelBrot
             this.herhalingen = new TextBox();
             this.herhalingen.Location = new Point(400, 40);
             this.herhalingen.Size = new Size(100, 100);
-            this.herhalingen.Text = ("2");
+            this.herhalingen.Text = ("100");
             this.Controls.Add(herhalingen);
 
             //middenxlabel
@@ -81,8 +89,9 @@ namespace MandelBrot
             this.knop.Size = new Size(100, 25);
             this.knop.Text = ("Doorgaan");
             this.Controls.Add(knop);
+            this.knop.Click += new System.EventHandler(this.knop_Click);
 
-            this.Mantelbrot = new System.Windows.Forms.PictureBox();
+            /*this.Mantelbrot = new System.Windows.Forms.PictureBox();
             //mandelbrottekening
             this.Mantelbrot.Location = new System.Drawing.Point(10, 80);
             this.Mantelbrot.Margin = new System.Windows.Forms.Padding(0);
@@ -91,117 +100,95 @@ namespace MandelBrot
             this.Mantelbrot.TabIndex = 0;
             this.Mantelbrot.TabStop = false;
             this.Controls.Add(Mantelbrot);
-
+            */
             //Scherm
             //this.AutoScaleDimensions = new System.Drawing.SizeF(500, 600);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.Mantelbrot);
+            this.ClientSize = new System.Drawing.Size(1100, 900);
+            //this.Controls.Add(this.Mantelbrot);
             this.Name = "Mantelbrot";
             this.Text = "Mantelbrot";
-            this.Shown += new System.EventHandler(this.Mandelbrot_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.Mantelbrot)).EndInit();
+            //this.Shown += new System.EventHandler(this.Mandelbrot_Shown);
             this.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Form1_Load);
+
+
+            //pictureBox
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1.Location = new System.Drawing.Point(10, 70);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(800, 800);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.Controls.Add(this.pictureBox1);
         }
-        
+
         public void knop_Click(object sender, EventArgs e)
         {
-            this.Controls.Add(Mantelbrot);
-            double middenx = double.Parse(this.middenx.Text);
-            double middeny = double.Parse(this.middeny.Text);
-            double schaal = double.Parse(this.schaal.Text);
-            double herhalingen = double.Parse(this.herhalingen.Text);
-            double aantalherhalingen = Convert.ToDouble(this.herhalingen.Text);
-            ((System.ComponentModel.ISupportInitialize)(this.Mantelbrot)).BeginInit();
-            for (int x = 0; x < Mantelbrot.Width; x++)
+
+
+            Bitmap img = MandelbrotSet(pictureBox1, 2, -2, 2, -2);
+            pictureBox1.Image.Dispose();
+            pictureBox1.Image = img;
+            
+            
+            
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            Bitmap img = MandelbrotSet(pictureBox1, 2, -2, 2, -2);
+            pictureBox1.Image = img;
+        }
+        Bitmap MandelbrotSet(PictureBox pictureBox1, double maxr, double minr, double maxi, double mini)
+        {
+            currentmaxr = maxr;
+            currentmaxi = maxi;
+            currentminr = minr;
+            currentmini = mini;
+            Bitmap img = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            double zx = double.Parse(this.middenx.Text);
+            double zy = 0;
+            double cx = 0;
+            double cy = 0;
+            double loopmax = double.Parse(this.herhalingen.Text);
+            double xjump = ((maxr - minr) / Convert.ToDouble(img.Width));
+            double yjump = ((maxi - mini) / Convert.ToDouble(img.Height));
+            double tempzx = 0;
+           
+            int loopgo = 0;
+            for (int x = 0; x < img.Width; x++)
             {
-                for (int y = 0; y < Mantelbrot.Height; y++)
+                cx = (xjump * x) - Math.Abs(minr);
+                for (int y = 0; y < img.Height; y++)
                 {
-                    //double middenx = double.Parse(this.middenx.Text);
-                    //double middeny = double.Parse(this.middeny.Text);
-                    Complex c = new Complex(middenx, middeny);
-                    Complex z = new Complex(0, 0);
-                    int it = 0;
-                    do
+                    zx = 0;
+                    zy = 0;
+                    cy = (yjump * y) - Math.Abs(mini);
+                    loopgo = 0;
+                    while (zx * zx + zy * zy <= 4 && loopgo < loopmax)
                     {
-                        it++;
-                        z.Square();
-                        z.Add(c);
-                        if (z.Magnitude() > 2.0) break;
+                        loopgo++;
+                        tempzx = zx;
+                        zx = (zx * zx) - (zy * zy) + cx;
+                        zy = (2 * tempzx * zy) + cy;
                     }
-                    while (it < 100);
-                    this.Controls.Add(Mantelbrot);
+                    if (loopgo != loopmax)
+                        img.SetPixel(x, y, Color.FromArgb(loopgo % 128 * 2, loopgo % 32 * 7, loopgo % 16 * 14));
+                    else
+                        img.SetPixel(x, y, Color.Black);
+
                 }
             }
+            return img;
+
         }
-        //double herhalingen = double.Parse(this.herhalingen.Text);
-        private void Mandelbrot_Shown(object sender, EventArgs e)
-        {
-            double aantalherhalingen = Convert.ToDouble(this.herhalingen.Text);
-            Console.WriteLine(aantalherhalingen);
-            double herhalingen = double.Parse(this.herhalingen.Text);
-            Bitmap bm = new Bitmap(400, 400);
-                for (int x = 0; x < 400; x++)
-            {
-                for (int y = 0; y < 400; y++)
-                {
-                    double middenx = (double)(x - (400 / 2)) / (double)(400 / 4);
-                    double middeny = (double)(y - (400 / 2)) / (double)(400 / 4);
-                    Complex c = new Complex(middenx, middeny);
-                    Complex z = new Complex(middenx, middeny);
-                    int it = 0;
-                    do
-                    {
-                        it++;
-                        z.Square();
-                        z.Add(c);
-                        if (z.Magnitude() > 2.0) break;
-                    }
-                    //int herhaling = double herhalingen
-                    while (it < herhalingen);
-                    bm.SetPixel(x, y, it < 100 ? Color.Black : Color.White);
-                }
-            }
-            Mantelbrot.Image = bm;
-        }
-        
+
+
+
+
 
     }
-
-    public class Complex
-    {
-        public double middenx; //real
-        public double middeny; //imaginary
-        //private int v1;
-        //private int v2;
-
-        /*public Complex(int v1, int v2)
-        {
-            this.v1 = v1;
-            this.v2 = v2;
-        }*/
-
-        public Complex(double a, double b)
-        {
-            this.middenx = a;
-            this.middeny = b;
-        }
-
-        public void Square()
-        {
-            double temp = (middenx * middenx) - (middeny * middeny);
-            middeny = 2.0 * middenx * middeny;
-            middenx = temp;
-        }
-        public double Magnitude()
-        {
-            return Math.Sqrt((middenx * middenx) + (middeny * middeny));
-        }
-        public void Add(Complex c)
-        {
-            middenx += c.middenx;
-            middeny += c.middeny;
-        }
-    }
+    
 }
 
