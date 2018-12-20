@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Reversi
 {
-    public partial class Reversi : Form 
+    public partial class Reversi : Form
     {
         private Button NieuwKnop;
         private Button Help;
