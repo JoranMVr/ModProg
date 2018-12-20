@@ -104,7 +104,7 @@ namespace MandelBrot
             //Scherm
             //this.AutoScaleDimensions = new System.Drawing.SizeF(500, 600);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(1100, 900);
             //this.Controls.Add(this.Mantelbrot);
             this.Name = "Mantelbrot";
             this.Text = "Mantelbrot";
@@ -117,7 +117,7 @@ namespace MandelBrot
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1.Location = new System.Drawing.Point(10, 70);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(704, 469);
+            this.pictureBox1.Size = new System.Drawing.Size(800, 800);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.Controls.Add(this.pictureBox1);
@@ -162,8 +162,8 @@ namespace MandelBrot
                 cx = (xjump * x) - Math.Abs(minr);
                 for (int y = 0; y < img.Height; y++)
                 {
-                    zx = double.Parse(this.middenx.Text);
-                    zy = double.Parse(this.middeny.Text);
+                    zx = 0;
+                    zy = 0;
                     cy = (yjump * y) - Math.Abs(mini);
                     loopgo = 0;
                     while (zx * zx + zy * zy <= 4 && loopgo < loopmax)
