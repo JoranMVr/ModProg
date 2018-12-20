@@ -42,7 +42,7 @@ namespace Fractals
             double xjump = ((maxr - minr) / Convert.ToDouble(img.Width));
             double yjump = ((maxi - mini) / Convert.ToDouble(img.Height));
             double tempzx = 0;
-            int loopmax = 10000;
+            int loopmax = 100;
             int loopgo = 0;
             for (int x = 0; x < img.Width; x++)
             {

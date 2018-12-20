@@ -112,13 +112,13 @@ namespace Wet_van_Fitt
             int d = (int)Math.Round(afstand);
             int w = button2.Size.Width;
             double id = Math.Log((afstand / w) + 1, 2);
-            Console.WriteLine("Meting " + i);
-            Console.WriteLine("Reactietijd (ms)     = " + Tijdverschil);
-            Console.WriteLine("Afstand     (pixels) = " + d);
-            Console.WriteLine("Breedte     (pixels) = " + w);
-            Console.WriteLine("ID waarde            = " + id);
-            Console.WriteLine();
-            //Console.WriteLine(id + "." + Tijdverschil); //Gebruikt in combinatie met >>data.csv voor excel bestandje, in excel bij 'data -> Text to columns' scheiden op de .en grafiekje plotten
+            //Console.WriteLine("Meting " + i);
+            //Console.WriteLine("Reactietijd (ms)     = " + Tijdverschil);
+            //Console.WriteLine("Afstand     (pixels) = " + d);
+            //Console.WriteLine("Breedte     (pixels) = " + w);
+            //Console.WriteLine("ID waarde            = " + id);
+            //Console.WriteLine();
+            Console.WriteLine(id + "." + Tijdverschil); //Gebruikt in combinatie met >>data.csv voor excel bestandje, in excel bij 'data -> Text to columns' scheiden op de .en grafiekje plotten
         }
     }
 }
